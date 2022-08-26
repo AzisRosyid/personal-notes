@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #395B64;
+  color: white;
+}
+
+button {
+  font-family: 'Nunito', sans-serif;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar {
+  background-color: #2C3639;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  overflow: auto;
+  padding: 8px 16px;
+  min-width: 600px;
+}
+
+.navbar h1 {
+  float: left;
+  flex: auto;
+}
+
+.navbar input {
+  float: right;
+  width: 40%;
+  margin: 2px 0;
+  border: solid white;
+  border-radius: 8px;
+  outline: none;
+  padding: 8px;
+  font-size: 14px;
+  max-width: 400px;
+  min-width: 100px;
+}
+
+.navbar input:focus {
+  box-shadow: 0px 0px 1px 2px #1B2528;
+}
+
+main {
+  min-width: 600px;
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.note-tab {
+  border-radius: 16px;
+  background-color: white;
+  overflow: auto;
+  box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.3);
+}
+
+.tab-nav {
+  background-color: #2C3639;
+  height: -50px;
+  overflow: auto;
+}
+
+.tab-nav-button {
+  height: 100%;
+  display: inline-block;
+  background-color: #2C3639;
+}
+
+.tab-button {
+  padding: 16px;
+  height: 100%;
+  background-color: #2C3639;
+  border: solid #2C3639;
+  position: relative;
+  left: -5px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tab-button:hover {
+  background-color: #1B2528;
+  border: solid #1B2528;
+}
+
+.tab-button.active {
+  background-color: white;
+  border: solid white;
+  color: black;
+}
+
+.tab-content {
+  padding: 16px;
+  position: relative;
+  top: -7px;
+  background-color: white;
+}
+
+.button-create {
+  background-color: #00C897;
+  margin-top: 12px;
+  margin-right: 16px;
+  border-radius: 30px;
+  padding: 6px 32px;
+  border: solid #00C897;
+  float: right;
+}
+
+.button-create:hover {
+  box-shadow: 0px 0px 1px 2px #1B2528;
+}
+
+.tab-content {
+  color: #1B2528;
+}
+
+.note-list {
+  display: none;
+}
+
+.note-list.active {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.empty-message {
+  grid-column: 1 / span 4;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.note-item {
+  border: 1px solid #1B2528;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.note-item-content {
+  flex: 1;
+}
+
+.note-item-content .note-title {
+  font-size: 22px;
+}
+
+.note-item-content .note-date {
+  font-size: 15px;
+  margin: 4px 0;
+  color: #2C3639;
+}
+
+.note-item-action {
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: 1fr 1fr; 
+  position: relative;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.note-item-action-button {
+  width: 100%;
+  padding: 4px;
+  border-radius: 16px;
+}
+
+.note-item-action-button.button-archive {
+  grid-column: 1 / span 2;
+  background-color: #2C3639;
+  border: 1px solid #2C3639;
+}
+
+.modal-delete-action-button.button-modal-cancel {
+  background-color: #2C3639;
+  border: 1px solid #2C3639;
+}
+
+.note-item-action-button.button-edit, .input-note-action-button.button-modal-update {
+  background-color: orange;
+  border: 1px solid orange;
+}
+
+.note-item-action-button.button-delete, .input-note-action-button.button-modal-cancel, .modal-delete-action-button.button-modal-delete {
+  background-color: #F94C66;
+  border: 1px solid #F94C66;
+}
+
+.input-note-action-button.button-modal-create {
+  background-color: #00C897;
+  border: 1px solid #00C897;
+}
+
+.note-item-action-button.button-archive:hover, .note-item-action-button.button-edit:hover, .note-item-action-button.button-delete:hover, .input-note-action-button:hover, .modal-delete-action-button.button-modal-cancel:hover, .modal-delete-action-button.button-modal-delete:hover {
+  box-shadow: 0px 0px 0px 1px #1B2528;
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4);
+  color: #1B2528;
+}
+
+.modal-content {
+  max-width: 1000px;
+  background-color: #fefefe;
+  margin: 15% auto;
+  overflow: hidden;
+  width: 80%;
+  border-radius: 16px; 
+  box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.3);
+}
+
+.modal-title {
+  display: block;
+  background-color: #2C3639;
+  padding: 16px 24px;
+  color: white;
+}
+
+.form-input {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 16px;;
+}
+
+.input-note {
+  display: flex;
+  grid-column: 1 / span 3;
+  flex-direction: column;
+}
+
+.input-note input {
+  width: 100%;
+  border: 1px solid #1B2528;
+  border-radius: 8px;
+  outline: none;
+  padding: 12px;
+  font-size: 18px;
+}
+
+.input-note input:focus, .input-note textarea:focus {
+  box-shadow: 0px 0px 0px 1px #1B2528;
+}
+
+.input-note label {
+  color: black;
+  margin: 4px;
+  margin-left: 12px;
+  margin-bottom: 8px;
+}
+
+.input-note textarea {
+  border: 1px solid #1B2528;
+  border-radius: 8px;
+  outline: none;
+  padding: 12px;
+  font-size: 16px;
+  min-height: 175px;
+  min-width: 100%;
+  max-width: 100%;
+  font-family: 'Nunito', sans-serif;
+}
+
+.input-checkbox {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8x;
+  margin-top: 8px;
+}
+
+.input-checkbox label {
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 18px;
+  float: left;
+  color: #1B2528;
+}
+
+.input-checkbox input {
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+
+.input-checkbox input:focus {
+  box-shadow: 0 0 0 0;
+}
+
+.input-note-action {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-note-action-button {
+  margin: 4px;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+#modalDelete .modal-content {
+  width: 40%;
+  margin: 100px auto;
+  max-width: 500px;
+}
+
+#modalDelete .modal-content .modal-action {
+  padding: 24px;
+}
+
+#modalDelete .modal-content .modal-action p {
+  text-align: center;
+}
+
+.delete-note-action {
+  padding: 0 32px;
+  padding-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px
+}
+
+.delete-note-action button {
+  padding: 10px;
+  width: 100%;
+  border-radius: 30px;
+}
+
+span {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 900px) {
+  .note-list.active {
+    display: grid;
+    grid-gap: 16px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
